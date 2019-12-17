@@ -9,7 +9,7 @@ export const loadData = (dataType, params) => ({
         .then(response => ({
             dataType, 
             data: response.data,
-            total: Number(response.headers('x-total-count')),
+            total: Number(response.headers['x-total-count']),
             params
         }))
 })
