@@ -26,7 +26,10 @@ export class CartDetails extends Component {
             </table>
             <div className="text-center">
                 <Link className="btn btn-primary m-1" to="/shop">Continue Shopping</Link>
-                <Link className={this.getLinkClasses()} to="/shop/checkout">Checkout</Link>
+                {
+                    this.props.cart ? (<Link className={this.getLinkClasses()} to="/shop/checkout">Checkout</Link>) : ''
+                }
+                
             </div>
         </div>
     }

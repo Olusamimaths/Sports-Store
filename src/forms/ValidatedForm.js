@@ -52,9 +52,9 @@ export class ValidatedForm extends Component {
                 <button className="btn btn-secondary m-1" onClick={this.props.cancelCallback}>
                     {this.props.cancelText || 'Cancel'}
                 </button>
-                <buttton className="btn btn-primary m-1" onClick={ this.handleSubmit} disabled={true}>
+                <button className="btn btn-primary m-1" onClick={ this.handleSubmit} disabled={this.props.cartNotEmpty}>
                     {this.props.submitText || 'Submit'}
-                </buttton>
+                </button>
             </div>
         </React.Fragment>
     }
