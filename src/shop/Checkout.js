@@ -40,7 +40,7 @@ export class Checkout extends Component {
                     <ValidatedForm formModel={this.formModel}
                         defaultAttrs={this.defaultAttrs}
                         submitCallback={this.handleSubmit}
-                        cancelCallback={this.cancelCallback}
+                        cancelCallback={this.handleCancel}
                         cartNotEmpty={!this.props.cart}
                         submitText="Place Order"
                         cancelText = "Return to cart" />
