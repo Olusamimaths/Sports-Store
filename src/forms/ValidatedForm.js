@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ValidationError } from './ValidationError';
-import { GetMessages } from './GetMessages';
+import { GetMessages } from './ValidationMessages';
 
 export class ValidatedForm extends Component {
     constructor(props){
@@ -47,12 +47,12 @@ export class ValidatedForm extends Component {
 
     render() {
         return <React.Fragment>
-            { this.pros.formModel.map(m => this.renderElement(m)) }
+            { this.props.formModel.map(m => this.renderElement(m)) }
             <div className="text-center">
                 <button className="btn btn-secondary m-1" onClick={this.props.cancelCallback}>
                     {this.props.cancelText || 'Cancel'}
                 </button>
-                <buttton className="btn btn-primary m-1" onClick={ this.handleSubmit} >
+                <buttton className="btn btn-primary m-1" onClick={ this.handleSubmit} disabled={true}>
                     {this.props.submitText || 'Submit'}
                 </buttton>
             </div>
