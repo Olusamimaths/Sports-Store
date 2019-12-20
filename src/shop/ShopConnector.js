@@ -16,27 +16,28 @@ export const ShopConnector = connect(ds => ds, mapDispatchToProps)(
     class extends Component {
         selectComponent = (routeProps) => {
             const wrap = (Component, Content) =>
-                <Component {...this.props} {...this.routeProps}>
+                <Component {...this.props} {...routeProps}>
                     {Content && wrap(Content)}
                 </Component>
             switch (routeProps.match.params.section) {
-                case 'products':
+                case "products":
                     return wrap(DataGetter, Shop);
-                case 'cart':
+                case "cart":
                     return wrap(CartDetails);
-                case 'checkout':
+                case "checkout":
                     return wrap(Checkout);
-                case 'thanks':
+                case "thanks":
                     return wrap(Thanks);
                 default:
-                    return <Redirect to='/shop/products/all/1' />
+                    return <Redirect to="/shop/products/all/1" />
             }
         }
-
-        render(){
+        render() {
             return <Switch>
-                <Redirect from='/shop/products/:category' to='/shop/products/:category/1' exact={true} />
-                <Route path={'/shop/:section?/:category?/:page?'} render={routeProps => this.selectComponent(routeProps)} />
+                <Redirect from="/shop/products/:category"
+                    to="/shop/products/:category/1" exact={true} />
+                <Route path={"/shop/:section?/:category?/:page?"}
+                    render={routeProps => this.selectComponent(routeProps)} />
             </Switch>
         }
         componentDidMount = () => this.props.loadData(DataTypes.CATEGORIES);
