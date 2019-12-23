@@ -20,7 +20,7 @@ const createServer = () => {
         router = jsonServer.router(fileName.endsWith('.js')
             ? require(fileName)() : fileName);
         let schema = fs.readFileSync('./serverQueriesSchema.graphql', 'utf-8') +
-                    fs.readFileSync('./serverMutationsSchema.graphql')
+                    fs.readFileSync('./serverMutationsSchema.graphql', 'utf-8')
         let resolvers = {...queryResolvers, ...mutationResolvers};
         graph = graphqlHTTP({
             schema: buildSchema(schema),

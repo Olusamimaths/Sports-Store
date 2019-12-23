@@ -18,6 +18,6 @@ export const OrdersConnector = graphql(ordersSummaryQuery,
             pageSize: vars.pageSize,
             setPageSize: (size) => {vars.pageSize = Number(size); refetch(vars)},
             sortKey: vars.sort,
-            setSortKey: (key) => {vars.sort = key; refetch(vars)}
+            setSortProperty: (key) => {vars.sort = key; refetch(vars)}
         }) 
     })(OrdersTable)
