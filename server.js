@@ -38,7 +38,7 @@ const app = express();
 app.use(cors());
 app.use(jsonServer.bodyParser);
 app.use('/api', (req, res, next) => router(req, res, next));
-app.use('/graphql', (req, res, next) => graph(res, res, next))
+app.use('/graphql', (req, res, next) => graph(req, res, next))
 
 chokidar.watch(fileName).on('change', () => {
     console.log('Reloading web service data...');
