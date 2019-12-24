@@ -13,3 +13,22 @@ export const ordersSummaryQuery = gpl`
             }
         }
     `
+
+export const productList = gpl`
+        query($page: Int, $pageSize: Int, $sort: String) {
+            products {
+                totalSize,
+                products(page: $page, pageSize: $pageSize, sort: $sort) {
+                    id, name, category, price
+                }
+            }
+        }
+`
+
+export const product = gpl`
+        query($id: ID!){
+            product(id: $id) {
+                id, name, description,category, price
+            }
+        }
+`
