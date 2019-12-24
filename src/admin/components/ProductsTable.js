@@ -24,7 +24,7 @@ export class ProductsTable extends Component {
                 <tbody>
                     { this.props.products.map(prod => 
                             <ProductsRow key={prod.id} product={prod} 
-                            deleteProduct={this.prop.deleteProduct} />
+                            deleteProduct={this.props.deleteProduct} />
                         )}
                 </tbody>
             </table>

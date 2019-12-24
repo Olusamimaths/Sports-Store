@@ -1,6 +1,6 @@
-import gpl from 'graphql-tag';
+import gql from 'graphql-tag';
 
-export const ordersSummaryQuery = gpl`
+export const ordersSummaryQuery = gql`
         query($onlyShipped: Boolean, $page: Int, $pageSize: Int, $sort: String){
             orders(onlyUnshipped: $onlyShipped) {
                 totalSize,
@@ -14,7 +14,7 @@ export const ordersSummaryQuery = gpl`
         }
     `
 
-export const productList = gpl`
+export const productsList = gql`
         query($page: Int, $pageSize: Int, $sort: String) {
             products {
                 totalSize,
@@ -25,7 +25,7 @@ export const productList = gpl`
         }
 `
 
-export const product = gpl`
+export const product = gql`
         query($id: ID!){
             product(id: $id) {
                 id, name, description,category, price

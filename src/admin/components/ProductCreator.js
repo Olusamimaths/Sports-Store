@@ -18,7 +18,7 @@ export class ProductCreator extends Component {
         if(this.props.mode === 'edit') {
             this.mutation = updateProduct;
             this.formModel = [
-                {label: 'Id', attrs: {disabled: true},...this.formModel}
+                {label: 'Id', attrs: {disabled: true}}, ...this.formModel
             ].map(item => ({...item, attrs: {...item.attrs, 
                     defaultValue: this.props.product[item.label.toLowerCase()]}}));
         }
@@ -39,7 +39,7 @@ export class ProductCreator extends Component {
                         {(saveMuation, {client}) => {
                             return <ValidatedForm formModel={this.formModel} 
                             defaultAttrs={this.defaultAttrs}
-                            submitCallBack={data => {
+                            submitCallback={data => {
                                 saveMuation({variables: {product: {...data, price: Number(data.price)}}});
                                 if(this.props.mode !== 'edit'){
                                     client.resetStore();

@@ -1,6 +1,6 @@
-import gpl from 'graphql-tag';
+import gql from 'graphql-tag';
 
-export const shipOrder = gpl`
+export const shipOrder = gql`
     mutation($id: ID!, $shipped: Boolean!) {
         shipOrder(id: $id, shipped: $shipped) {
             id, shipped
@@ -8,7 +8,7 @@ export const shipOrder = gpl`
     }
 `
 
-export const storeProduct = gpl`
+export const storeProduct = gql`
     mutation($product: productStore) {
         storeProduct(product: $product) {
             id, name, category, description, price
@@ -16,7 +16,7 @@ export const storeProduct = gpl`
     }
 `
 
-export const updateProduct = gpl`
+export const updateProduct = gql`
     mutation($product: productUpdate) {
         updateProduct(product: $product) {
             id, name, category, description, price
@@ -24,7 +24,7 @@ export const updateProduct = gpl`
     }
 `
 
-export const deleteProduct = gpl`
+export const deleteProduct = gql`
     mutation($id: ID!) {
         deleteProduct(id: $id) {
             id

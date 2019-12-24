@@ -1,6 +1,6 @@
 import { compose, graphql } from 'react-apollo';
-import {ProductsTable} from './ProductsTable';
-import { productList } from '../client/clientQueries';
+import { ProductsTable } from './ProductsTable';
+import { productsList } from '../client/clientQueries';
 import { deleteProduct } from '../client/clientMutations';
 
 const vars = {
@@ -8,37 +8,38 @@ const vars = {
 }
 
 export const ConnectedProducts = compose(
-    graphql(productList,
+    graphql(productsList,
         {
-            options: (props) => ({variables: vars}),
-            props: ({data: {loading, products, refetch}}) => ({
+            options: (props) => ({ variables: vars }),
+            props: ({ data: { loading, products, refetch } }) => ({
                 totalSize: loading ? 0 : products.totalSize,
                 products: loading ? [] : products.products,
                 currentPage: vars.page,
-                pageCount: loading ? 0 : Math.ceil(products.totalSize/vars.pageSize),
-                navigateToPage: (page) => {vars.page = Number(page); refetch(vars)},
+                pageCount: loading ? 0 : Math.ceil(products.totalSize / vars.pageSize),
+                navigateToPage: (page) => { vars.page = Number(page); refetch(vars) },
                 pageSize: vars.pageSize,
-                setPageSize: (size) => {vars.pageSize=Number(size); refetch(vars)},
+                setPageSize: (size) => { vars.pageSize = Number(size); refetch(vars) },
                 sortKey: vars.sort,
-                setSortProperty: (key) => { vars.sort = key; refetch(vars)}
+                setSortProperty: (key) => { vars.sort = key; refetch(vars) }
             })
         }
-        ),
-        graphql(deleteProduct, 
-            {
-                // removing an object does not update the cache automatically so do it manually
-                options: {
-                    update:(cache, {data: {deleteProduct: {id}}}) => {
-                        const queryDetails = { query: productList, variables: vars};
-                        const data = cache.readQuery(queryDetails);
-                        data.products.products = data.products.products.filter(p => p.id !== id);
-                        data.products.totalSize = data.products.totalSize -1;
-                        cache.writeQuery({...queryDetails, data});
-                    }
-                },
-                props: ({ mutate }) => ({
-                    deleteProduct: (id) => mutate({variables: {id}})
-                })
-            }
-            )
+    ),
+    graphql(deleteProduct,
+        {
+            // removing an object does not update the cache automatically so do it manually
+            options: {
+                update: (cache, { data: { deleteProduct: { id } } }) => {
+                    const queryDetails = { query: productsList, variables: vars };
+                    const data = cache.readQuery(queryDetails)
+                    data.products.products =
+                        data.products.products.filter(p => p.id !== id);
+                    data.products.totalSize = data.products.totalSize - 1;
+                    cache.writeQuery({ ...queryDetails, data });
+                }
+            },
+            props: ({ mutate }) => ({
+                deleteProduct: (id) => mutate({ variables: { id } })
+            })
+        }
+    )
 )(ProductsTable);
