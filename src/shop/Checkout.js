@@ -4,7 +4,8 @@ import { ValidatedForm } from '../forms/ValidatedForm';
 export class Checkout extends Component {
     constructor(props){
         super(props);
-        this.defaultAttrs = {type: 'text', required: true}
+        this.defaultAttrs = {type: 'text', required: true};
+
         this.formModel = [
             {label: 'Name'},
             {label: 'Email', attrs: {type: 'email'}},
@@ -39,7 +40,8 @@ export class Checkout extends Component {
                     <ValidatedForm formModel={this.formModel}
                         defaultAttrs={this.defaultAttrs}
                         submitCallback={this.handleSubmit}
-                        cancelCallback={this.cancelCallback}
+                        cancelCallback={this.handleCancel}
+                        cartNotEmpty={!this.props.cart}
                         submitText="Place Order"
                         cancelText = "Return to cart" />
                 </div>
