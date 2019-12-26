@@ -32,7 +32,7 @@ export class AuthProviderImpl extends Component {
 
     render = () => 
         <AuthContext.Provider value={{...this.state, 
-            autheticate: this.authenticate, signout: this.signout}} >
+            authenticate: this.authenticate, signout: this.signout}} >
                 { this.props.children }
             </AuthContext.Provider>
 }

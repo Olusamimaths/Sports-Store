@@ -9,7 +9,7 @@ import { ConnectedProducts } from './components/ProductsConnector';
 import { ProductEditor } from './components/ProductEditor';
 import { ProductCreator } from './components/ProductCreator';
 import { AuthPrompt } from '../auth/AuthPrompt';
-import { authWrapper } from '../auth/Authwraper';
+import { authWrapper } from '../auth/AuthWrapper';
 
 export const Admin = authWrapper(class extends Component {
     constructor(props) {

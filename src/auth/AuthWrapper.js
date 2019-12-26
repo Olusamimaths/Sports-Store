@@ -1,8 +1,8 @@
-import React, { Compoent } from 'react';
+import React, { Component } from 'react';
 import { AuthContext } from './AuthContext';
 
 export const authWrapper = (WrappedComponent) => 
-    class extends Compoent {
+    class extends Component {
         render = () => 
             <AuthContext.Consumer>
                 { context => 
